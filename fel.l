@@ -1,15 +1,17 @@
 %option noyywrap
-
 chiffre [0-9];
 number [0-9]+;
-floatt [0-9]*\.{number}(e[+-]?{number})?;
+frac [.]{number};
+Exp ([Ee][+-]?{number})?;
+Reel [0-9]+|\.[0-9]*|\.[0-9]+;
 %% 
 (for)|(while)|(if)|(else) printf("[mot-clefs]");
-[=+*-] printf("[op]");
-[(){};]|\[|\]  printf("[symboles]");
+[=+*<>-] printf("[op]");
+[;(){}]|\[|\]  printf("[symboles]");
 [a-zA-Z][a-zA-Z0-9]* printf("<%s>",yytext);
 {number} printf("[int]");
-{floatt} printf("[float]");
+{Reel} printf("[float]");
+. printf("%c",yytext[0]);
 %%
 int main(int argc,char*argv[])
 {
