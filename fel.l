@@ -1,11 +1,11 @@
 %option noyywrap
-chiffre [0-9];
-number [0-9]+;
-frac [.]{number};
-Exp ([Ee][+-]?{number})?;
-Reel [0-9]+|\.[0-9]*|\.[0-9]+;
-%% 
-(for)|(while)|(if)|(else) printf("[mot-clefs]");
+chiffre [0-9]
+number {chiffre}+
+frac [.]{number}
+Exp ([Ee][+-]?{number})
+Reel {number}{frac}?{Exp}?
+%%
+for|while|if|else printf("[mot-clefs]");
 [=+*<>-] printf("[op]");
 [;(){}]|\[|\]  printf("[symboles]");
 [a-zA-Z][a-zA-Z0-9]* printf("<%s>",yytext);
@@ -16,7 +16,8 @@ Reel [0-9]+|\.[0-9]*|\.[0-9]+;
 int main(int argc,char*argv[])
 {
     FILE*fil=NULL;
-    if(argc>1){
+    if(argc>1)
+    {
         fil=fopen(argv[1],"r");
         if(!fil){
             printf("Erreur d'ouverture");
