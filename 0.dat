@@ -1,5 +1,8 @@
 for( i=0 ; i< 10 ; i++ ){
     truc[i] = 0 ;
-    machin = 12.3e-4*4;
+    machin = 12.3e-4*4; /*
+    sdadsa
+    */
     bidule = .0 ;
+    aaaabbbbaaaaaaaaaaaa
 }

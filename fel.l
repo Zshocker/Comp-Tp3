@@ -12,6 +12,8 @@ for|while|if|else printf("[mot-clefs]");
 {number} printf("[int]");
 {Reel} printf("[float]");
 . printf("%c",yytext[0]);
+"/*"[^"*/"]*"*/" printf("");
+"//".*\n  printf("");
 %%
 int main(int argc,char*argv[])
 {
